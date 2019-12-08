@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic 8 Ball</title>
+  <script>
+    const POSSIBLE_ANSWER = [
+      { answer: "It is certain.", type: "affirmative"},
+      { answer: "It is decidedly so.", type: "affirmative"},
+      { answer: "Without a doubt.", type: "affirmative"},
+      { answer: "Yes - definitely.", type: "affirmative"},
+      { answer: "You may rely on it.", type: "affirmative"},
+      { answer: "As I see it, yes.", type: "affirmative"},
+      { answer: "Most likely.", type: "affirmative"},
+      { answer: "Outlook good.", type: "affirmative"},
+      { answer: "Yes.", type: "affirmative"},
+      { answer: "Signs point to yes.", type: "affirmative"},
+      { answer: "Reply hazy, try again.", type: "non-committal"},
+      { answer: "Ask again later.", type: "non-committal"},
+      { answer: "Better not tell you now.", type: "non-committal"},
+      { answer: "Cannot predict now.", type: "non-committal"},
+      { answer: "Concentrate and ask again.", type: "non-committal"},
+      { answer: "Don't count on it.", type: "negative"},
+      { answer: "My reply is no.", type: "negative"},
+      { answer: "My sources say no.", type: "negative"},
+      { answer: "Outlook not so good.", type: "negative"},
+      { answer: "Very doubtful.", type: "negative"},
+    ];
+    const getRandomNumber = (max) => {
+      const number = Math.floor(Math.random() * Math.floor(max));
+      return number;
+    };
+    const handleAnswer = () => {
+      const question = document.getElementById("question").value;
+      if (question !== "") {
+        const number = getRandomNumber(POSSIBLE_ANSWER.length);
+        const response = POSSIBLE_ANSWER[number].answer;
+        document.getElementById("answer").innerText = response;
+      };
+    };
+    const handleClear = () => {
+      document.getElementById("question").value = "";
+      document.getElementById("answer").innerText = "";
+    };
+  </script>
+  <style>
+    .main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+    }
+    .input-area {
+      width: 20.0rem;
+      text-align: center;
+    }
+    button {
+      height: 2.0rem;
+      width: 6.0rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div>Input your Question.</div>
+    <textarea id="question" class="input-area"></textarea>
+    <button type="button" onclick={handleAnswer()}>ANSWER</button>
+    <button type="button" onclick={handleClear()}>CLEAR</button>
+    <div id="answer"></div>
+  </div>
+</body>
+</html>
